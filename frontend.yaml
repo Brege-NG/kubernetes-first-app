@@ -28,10 +28,10 @@ spec:
           resources: 
             requests:
               memory: "256Mi"
-              cpu: "250Mi"
+              cpu: "250m"
             limits: 
               memory: "512Mi"
-              cpu: "500"
+              cpu: "500m"
 
       imagePullSecrets:
         - name: ghcr-secret-auth
@@ -49,6 +49,3 @@ spec:
     - name: http
       port: 3000
       targetPort: 3000
-
-
-
