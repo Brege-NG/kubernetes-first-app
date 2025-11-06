@@ -3,7 +3,6 @@ kind: Application
 metadata:
   name: myapp-argo-application
   namespace: argocd
-  
 spec:
   project: default
   source:
