@@ -1,0 +1,80 @@
+# ============================================
+# SECRETS ET FICHIERS SENSIBLES
+# ============================================
+# ⚠️ CRITIQUE : Ne JAMAIS committer de secrets !
+
+# Tous les secrets sauf les exemples
+secrets/*.yaml
+!secrets/.gitkeep
+!secrets/*.example
+
+# Fichiers secrets individuels
+*secret*.yaml
+secret_*.yaml
+*-secret.yaml
+
+# Variables d'environnement
+.env
+.env.*
+*.env
+
+# Tokens et credentials
+*.token
+*.key
+*.pem
+*.crt
+credentials.json
+
+# ============================================
+# KUBERNETES
+# ============================================
+# Fichiers de configuration locaux
+kubeconfig
+*.kubeconfig
+.kube/
+
+# ============================================
+# IDE ET ÉDITEURS
+# ============================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# IntelliJ
+.idea/
+*.iml
+
+# ============================================
+# SYSTÈME D'EXPLOITATION
+# ============================================
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# ============================================
+# DIVERS
+# ============================================
+# Logs
+*.log
+logs/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Backups
+*.bak
+*.backup
+
