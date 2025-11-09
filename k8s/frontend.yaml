@@ -42,11 +42,10 @@ kind: Service
 metadata:
   name: carbuyers-frontend-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: carbuyers-frontend
   ports:
     - name: http
       port: 4200
       targetPort: 3000
-      nodePort: 30374

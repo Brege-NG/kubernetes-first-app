@@ -16,6 +16,6 @@ data:
   DB_USERNAME: "laravel_user"
 
   # Variables pour le frontend
-  NEXT_PUBLIC_URL: "http://192.168.49.2:30374"
-  NEXT_PUBLIC_API_URL: "http://192.168.49.2:32044/api"
+  NEXT_PUBLIC_URL: "http://127.0.0.1:4200"
+  NEXT_PUBLIC_API_URL: "http://127.0.0.1:4201/api"
 
