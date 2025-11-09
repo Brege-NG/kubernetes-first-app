@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-deployment
+  name: carbuyers-mysql
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: carbuyers-mysql
   replicas: 1
   template:
     metadata:
       labels:
-        app: mysql
+        app: carbuyers-mysql
     spec:
       containers:
         - name: mysql
@@ -19,28 +19,48 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_DATABASE
-              value: "transporteur"
+              valueFrom:
+                configMapKeyRef:
+                  name: carbuyers-config
+                  key: DB_DATABASE
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: carbuyers-config
+                  key: DB_USERNAME
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: carbuyers-secret
+                  key: db-password
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secret
-                  key: root-password
+                  name: carbuyers-secret
+                  key: mysql-root-password
           volumeMounts:
             - name: mysql-storage
               mountPath: /var/lib/mysql
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
       volumes:
         - name: mysql-storage
           persistentVolumeClaim:
-            claimName: mysql-pvc
+            claimName: carbuyers-mysql-pvc
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: carbuyers-mysql-service
 spec:
   selector:
-    app: mysql
+    app: carbuyers-mysql
   ports:
     - port: 3306
       targetPort: 3306
@@ -50,11 +70,10 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pvc
+  name: carbuyers-mysql-pvc
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
-
