@@ -1,20 +1,21 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: app-config
+  name: carbuyers-config
 data:
+  # Application
+  APP_NAME: "AutoDrive"
+  APP_ENV: "production"
+  APP_DEBUG: "false"
+
   # Variables d'environnement pour le backend
   DB_CONNECTION: "mysql"
-  DB_HOST: "mysql-service"
+  DB_HOST: "carbuyers-mysql-service"
   DB_PORT: "3306"
-  DB_DATABASE: "transporteur"
-  DB_USERNAME: "root"
-  
-  # # Variables MinIO
-  # MINIO_ENDPOINT: "minio-service"
-  # MINIO_PORT: "9000"
-  # MINIO_SSL: "false"
-  
+  DB_DATABASE: "laravel"
+  DB_USERNAME: "laravel_user"
+
   # Variables pour le frontend
-  NEXT_PUBLIC_API_URL: "http://backend-app-service:3001"
+  NEXT_PUBLIC_URL: "http://carbuyers-frontend-service:4200"
+  NEXT_PUBLIC_API_URL: "http://carbuyers-backend-service:4201/api"
 
