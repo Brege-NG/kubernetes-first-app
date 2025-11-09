@@ -1,54 +1,54 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-app
+  name: carbuyers-frontend
 spec:
   selector:
     matchLabels:
-      app: frontend-app
+      app: carbuyers-frontend
   replicas: 2
   template:
     metadata:
       labels:
-        app: frontend-app
+        app: carbuyers-frontend
     spec:
-      
       containers:
-        - name: frontend-app
+        - name: carbuyers-frontend
           image: ghcr.io/cabinet-ceipi/cg-ceipi-gestiontransporteur-frontend-admin:latest
           ports:
             - containerPort: 3000
           env:
+            - name: NEXT_PUBLIC_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: carbuyers-config
+                  key: NEXT_PUBLIC_URL
             - name: NEXT_PUBLIC_API_URL
               valueFrom:
                 configMapKeyRef:
-                  name: app-config
+                  name: carbuyers-config
                   key: NEXT_PUBLIC_API_URL
-
-          resources: 
+          resources:
             requests:
               memory: "256Mi"
               cpu: "250m"
-            limits: 
+            limits:
               memory: "512Mi"
               cpu: "500m"
 
       imagePullSecrets:
         - name: ghcr-secret-auth
-      
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-app-service
+  name: carbuyers-frontend-service
 spec:
   type: NodePort
   selector:
-    app: frontend-app
+    app: carbuyers-frontend
   ports:
     - name: http
-      port: 3000
+      port: 4200
       targetPort: 3000
-
-
-
