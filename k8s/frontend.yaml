@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: carbuyers-frontend
-          image: ghcr.io/cabinet-ceipi/cg-ceipi-gestiontransporteur-frontend-admin:latest
+          image: ghcr.io/brege-ng/first_app_argo_test_frontend:latest
           ports:
             - containerPort: 3000
           env:
@@ -35,9 +35,6 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
-
-      imagePullSecrets:
-        - name: ghcr-secret-auth
 
 ---
 apiVersion: v1
