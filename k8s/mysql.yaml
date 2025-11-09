@@ -65,15 +65,3 @@ spec:
     - port: 3306
       targetPort: 3306
   type: ClusterIP
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: carbuyers-mysql-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi

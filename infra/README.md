@@ -48,6 +48,22 @@ docker compose logs -f frontend
 docker compose logs -f mysql
 ```
 
+### 4. crée le tunnel
+
+```bash
+minikube tunnel
+
+```
+
+
+### Accéder à ArgoCD
+
+```bash
+kubectl port-forward svc/argocd-server -n argocd 8282:443
+
+```
+
+
 ## Arrêt
 
 ```bash
