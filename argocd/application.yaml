@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/cabinet-ceipi/cg-ceipi-gestiontransporteur-frontend-admin.git
+    repoURL: https://github.com/brege-ng/first_app_argo_test_frontend.git
     targetRevision: HEAD
-    path: dev
+    path: k8s
   destination: 
     server: https://kubernetes.default.svc
     namespace: gest_trans
